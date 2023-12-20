@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
+using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.FunctionApp.OutOfProc.Configurations;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,7 +74,7 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.OpenApi.FunctionApp.OutOfP
                             .AddSingleton<IOpenApiCustomUIOptions>(_ =>
                             {
                                 var assembly = Assembly.GetExecutingAssembly();
-                                var options = new OpenApiCustomUIOptions(assembly)
+                                var options = new MyOpenApiCustomUIOptions(assembly)
                                 {
                                     GetStylesheet = () =>
                                     {

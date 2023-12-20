@@ -1,6 +1,7 @@
 using System.Reflection;
 
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
+using System.Threading.Tasks;
 
 namespace Microsoft.Azure.WebJobs.Extensions.OpenApi.FunctionApp.InProc.Configurations
 {
@@ -9,6 +10,16 @@ namespace Microsoft.Azure.WebJobs.Extensions.OpenApi.FunctionApp.InProc.Configur
         public MyOpenApiCustomUIOptions(Assembly assembly)
             : base(assembly)
         {
+        }
+
+        public override Task<string> GetRequestInterceptorAsync()
+        {
+            return Task.FromResult("function(request) {console.log(request); return request;}");
+        }
+
+        public override Task<string> GetResponseInterceptorAsync()
+        {
+            return Task.FromResult("function(response) {console.log(response); return response;}");
         }
 
         //<!-- Uncomment if you want to use the embedded file. -->
